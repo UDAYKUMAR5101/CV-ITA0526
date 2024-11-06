@@ -1,0 +1,26 @@
+import cv2
+import numpy as np
+
+# Open the video file
+cap = cv2.VideoCapture("C:/Users/divya/OneDrive/Documents/COMPUTER VISION/13 REASONS WHY.mp4")
+
+# Check if the video opened successfully
+if not cap.isOpened():
+    print("Error opening video file")
+
+# Read and display video frames
+while cap.isOpened():
+    ret, frame = cap.read()
+    if ret:
+        cv2.imshow('Frame', frame)
+        
+        # Wait for 250 ms, exit if 'q' is pressed
+        if cv2.waitKey(250) & 0xFF == ord('q'):
+            break
+    else:
+        # Break the loop if there are no more frames to read
+        break
+
+# Release the video capture object and close all windows
+cap.release()
+cv2.destroyAllWindows()
