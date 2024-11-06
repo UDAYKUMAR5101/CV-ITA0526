@@ -1,0 +1,23 @@
+import cv2
+import numpy as np
+
+# Create a kernel for later use if needed
+kernel = np.ones((5,5), np.uint8)
+print(kernel)
+
+# Specify the path to the image
+path = "C:/Users/divya/OneDrive/Documents/COMPUTER VISION/CANNY.jpg"
+img = cv2.imread(path)
+
+# Check if the image was loaded successfully
+if img is not None:
+    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    imgBlur = cv2.GaussianBlur(imgGray, (7,7), 0)
+    imgCanny = cv2.Canny(imgBlur, 100, 200)
+
+    # Display the Canny edge-detected image
+    cv2.imshow("Img Canny", imgCanny)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()  # Close all OpenCV windows after key press
+else:
+    print("Error: Image not found at the specified path.")
